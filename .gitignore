@@ -1,0 +1,4 @@
+/*.sqlite3
+/SomeApps/__pycache__
+__pycache__
+/SomeApps/apps/Applications/migrations
