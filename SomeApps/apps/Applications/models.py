@@ -11,20 +11,26 @@ class Application(models.Model):
 
 
     """
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=200,
+                             verbose_name='Title',
+                             unique=True,
+                             null=False,
+                             blank=False)
+    api_key = models.CharField(max_length=32,
+                               verbose_name='api_key',
+                               default='default',
+                               unique=True,
+                               null=False,
+                               blank=False)
 
     def __str__(self):
         return f'ID: {self.id}, Title: {self.title}'
 
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200,
-                             verbose_name='Title',
-                             null=False,
-                             blank=False)
-    api_key = models.CharField(max_length=32,
-                               verbose_name='date published',
-                               default=secrets.token_hex(16),
-                               null=False,
-                               blank=False)
+    def save(self, *args, **kwargs):
+        if self.api_key == 'default':
+            self.api_key = secrets.token_hex(16)
+        super(Application, self).save(*args, **kwargs)
 
     def change_api_key(self, new_key):
         """Change api_key of instance
@@ -41,4 +47,4 @@ class Application(models.Model):
             else:
                 return f'Another application exists with key={new_key}'
         else:
-            return 'New API key have to be not empty and in range 0 < lenght <= 16'
+            return 'New API key have to be not empty and in range 0 < lenght <= 32'

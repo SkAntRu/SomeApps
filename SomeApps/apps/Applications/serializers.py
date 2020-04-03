@@ -6,3 +6,6 @@ class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
         fields = ('id', 'title', 'api_key')
+
+    def create(self, validated_data):
+        return Application(**validated_data)

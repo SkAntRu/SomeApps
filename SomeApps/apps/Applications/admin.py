@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Application
+
+
+class ApplicationAdmin(admin.ModelAdmin):
+    model = Application
+    list_display = ('id', 'title', 'api_key')
+
+
+admin.site.register(Application, ApplicationAdmin)
