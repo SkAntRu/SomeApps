@@ -3,8 +3,8 @@ Hello, it is my conversation task proving that i could work with DRF
 To install project:
 * Copy Repo
 * install reqirements
-* >>>python manage.py createsuperuser
-* >>>python manage.py migrate 
+* ```python manage.py createsuperuser```
+* ```python manage.py migrate```
 
 About project urls
 
