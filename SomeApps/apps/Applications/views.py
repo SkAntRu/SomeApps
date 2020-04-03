@@ -12,6 +12,7 @@ from Applications.serializers import ApplicationSerializer
 @permission_classes([IsAuthenticated])
 def create_application(request):
     """
+    Require authentification
     GET: return all applications
 
     POST: create new application.
@@ -41,7 +42,7 @@ def create_application(request):
 
 @api_view(['GET'])
 def get_all_applications(request):
-    """Return all applications"""
+    """GET: Return all applications"""
     all_apps = Application.objects.all()
     serializer = ApplicationSerializer(all_apps, many=True)
     if request.method == 'GET':
@@ -74,7 +75,8 @@ def get_application_by_api_key(request):
 @authentication_classes([SessionAuthentication, BasicAuthentication])
 @permission_classes([IsAuthenticated])
 def change_api_key(request):
-    """
+    """Require authentification
+
     GET: return all applications
 
     POST: change api_key in application.
