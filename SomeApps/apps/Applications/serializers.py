@@ -8,4 +8,4 @@ class ApplicationSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'api_key')
 
     def create(self, validated_data):
-        return Application(**validated_data)
+        return Application.objects.create(**validated_data)
